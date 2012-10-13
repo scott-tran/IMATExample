@@ -86,23 +86,39 @@ EXAMPLE.StarterView = Class.extend(IMAT.BaseView, {
 	someAction : function()
 	{
 		IMAT.log_debug("The someAction() function.");
-		
+
 		//This is where you would want to start making calls against the UIAutomation API's
 		//e.g. this.mainWin.textFields().firstWithName("foobar").tap();
-		
+
+        var nameField = this.getElement("nameField");
+        var helloButton = this.getElement("helloButton");
+
+        nameField.setValue("World");
+        helloButton.tap();
+
 		//NOTE: A good place to call validate functions is in the action funcitons themselves. This
 		//further reduces the clutter from the test files, and keeps them closer to their intended
 		//use as test definition files.
 		//e.g. this.validateSomething()
-		
+
+        this.validateGreeting();
+
 		//Every time an action is called, it should return the resulting view of that action.
 		//For example, if an action taps on an item in a list, and the result of that tap results 
 		//in the app going to a new view for that item, this function should return the view for 
 		//that item. If an action is taken that does not switch to a new view, simply return "this".
-		
-		//TODO: return the resulting view of this action. 
-		
+
+		return this;
 	},
-	
+
+    validateGreeting: function()
+    {
+        this.validateState("GREETING", false, this, function(that) {
+            var greetingLabel = that.getElement("greetingLabel");
+            assertTrue(greetingLabel.label() == "Hello World");
+        });
+
+
+    }
 	//TODO: Add more action functions here.
 });

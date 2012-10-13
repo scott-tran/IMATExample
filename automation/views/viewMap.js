@@ -8,14 +8,8 @@
 IMAT.viewMapPrefix = "UIATarget.localTarget().frontMostApp().mainWindow()";
 IMAT.viewMap = {	
 	StarterView : {
-		
-		button: [
-			".buttons()[0]",
-			".buttons().firstWithName(\"Some Button\")"
-		],
-		textField: function() {
-			return UIATarget.localTarget().frontMostApp().mainWindow().textFields()[0];
-		},
-		someText: ".scrollViews()[0];"
+		helloButton: '.buttons()["Say Hello"]',
+		nameField: '.textFields()["nameField"]',
+		greetingLabel: '.staticTexts()["greetingLabel"]'
 	}
 };

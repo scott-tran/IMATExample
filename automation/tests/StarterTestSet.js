@@ -82,7 +82,9 @@ EXAMPLE.StarterTestSet = Class.extend(IMAT.BaseFunctionalTestSet, {
 		IMAT.log_debug("Running the testSomething() test");
 		
 		//In IMAT, a test is defined as a set of actions taken against a view context.
-		this.viewContext
+        this.performActions([
+            ["some"]
+        ]);
 		
 	},
 	
